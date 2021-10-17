@@ -1,2 +1,2 @@
 # PyMusic
-Linux Music Player made in Python
+Linux Music Player made in Python and Tkinter
