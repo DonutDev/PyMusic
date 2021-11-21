@@ -5,9 +5,11 @@ from tkinter import *
 import tkinter as tk
 w = tk.Tk()
 from tkinter.filedialog import askdirectory
+from tkinter import filedialog
 path = askdirectory(title='Select Music Folder') # shows dialog box and return the path
 w.destroy()
 import os
+playlist_pos=1
 #code starts here--------------------------
 
 def playsong():
@@ -57,16 +59,8 @@ def playAll():
     		while mixer.music.get_busy():
 		       pygame.time.Clock().tick(500)
 
-def loadfolder():
-    path = askdirectory(title='Select Music Folder')
-    self.dirs = os.listdir(path)
-    self.lst_pos = self.lst.size()
-    for file in self.dirs:
-    	if file:
-    		if file.endswith('.mp3'):
-	        	self.lst.insert(self.lst_pos,path + '/' + file)
-	        	self.musicdirs.append(path + '/' + file)
-	        	self.lst_pos=self.lst_pos+1
+def addfile():
+    playlist.insert(playlist_pos,filedialog.askopenfilename())
 
 root=Tk()
 root.title('PySong')
@@ -118,8 +112,9 @@ VolDown = Button(root ,text = '-',  width = 3, font = ('Times', 10), command=vol
 VolDown.config(font=('Ubuntu',20),bg="grey",fg="white",padx=1,pady=1)
 VolDown.grid(row=2,column=1)
 
-Addbtn=Button(root,text="Add Music",command=loadfolder)
+Addbtn=Button(root,text="Add Music",command=addfile)
 Addbtn.config(font=('Ubuntu',20),bg="grey",fg="white",padx=7,pady=7)
 Addbtn.grid(row=2,column=3)
 
 mainloop()
+
